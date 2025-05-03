@@ -1,3 +1,10 @@
+/*
+Amerike University
+Author: Ali Angel
+Work #: 29
+Date: 03/05/25
+Description: This program will give the nearest prime number to a number given by the user using functions with referenced parameters
+*/
 
 #include <iostream>
 
@@ -5,10 +12,21 @@ void getPrimes(int &number);
 void getNearestPrime(int &number,int &downPrime,int &upPrime);
 
 int main(){
-    int num = 65;
-    getPrimes(num);
 
-    return 0;
+  int num;
+  int opt;
+
+  do
+  {
+  std::cout<<"Write the number we will search the nearest prime of: ";
+  std::cin>>num;
+  getPrimes(num);
+  std::cout<<"\ndo you wish to continue with this program?\n\n0.-YES\t1.-NO\n\nOPTION: ";
+  std::cin>>opt;
+  system("cls");
+  }while (opt != 1);
+
+  return 0;
 }
 
 void getPrimes(int &number)
@@ -59,28 +77,27 @@ void getPrimes(int &number)
 
 void getNearestPrime(int &number,int &downPrime,int &upPrime)
 {
-  int downPCounter = 0;
-  int upPCounter = 0;
-  for(downPrime;downPrime<number;downPrime++)
+  int downPCounter = downPrime;
+  int upPCounter = upPrime;
+  int firstCounter = 0;
+  int secondCounter = 0;
+
+  for(downPCounter;downPCounter<number;downPCounter++)
   {
-    std::cout<<"Downprime: "<<downPrime<<"\n";
-    downPCounter++;
+    firstCounter++;
   }
-  std::cout<<"donwPCounter: "<<downPCounter;
-  for(upPrime;upPrime>number;upPrime--)
+  for(upPCounter;upPCounter>number;upPCounter--)
   {
-    std::cout<<"upPrime: "<<upPrime<<"\n";
-    upPCounter++;
+    secondCounter++;
   }
-  std::cout<<"upPCounter: "<<upPCounter;
-  if(upPCounter == downPCounter)
+  if(firstCounter == secondCounter)
   {
     std::cout<<"There's two prime numbers at the same distance from the given number.";
-    std::cout<<"The first prime number is: "<< downPrime << "\nThe second prime number is: "<<upPrime;
-  }else if(downPCounter<upPCounter)
+    std::cout<<"\nThe first prime number is: "<< downPrime << "\nThe second prime number is: "<<upPrime;
+  }else if(firstCounter<secondCounter)
   {
     std::cout<<"The nearest prime number is: "<<downPrime;
-  }else if(downPCounter>upPCounter)
+  }else if(firstCounter>secondCounter)
   {
     std::cout<<"The nearest prime is: "<<upPrime;
   }
